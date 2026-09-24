@@ -1,12 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
 <!-- Entropy Partners: 120 points on a Fibonacci sphere, orthographic, tilted like the page's still frame.
-     Nearer points are larger and brighter; three carry the ember accent. Transparent ground; the points
-     switch to ink when the browser chrome is light so the mark still reads there. -->
-<style>
-.p{fill:#fff0db}
-@media (prefers-color-scheme:light){.p{fill:#1a1b20}}
-</style>
-<g class="p">
+     Nearer points are larger and brighter. Transparent ground; every point in the ember accent, which
+     reads on a light tab strip and on a dark one alike. -->
+<g fill="#eba25a">
 <circle cx="30.25" cy="31.04" r="1.45" opacity="0.26"/>
 <circle cx="39.82" cy="35.42" r="1.47" opacity="0.27"/>
 <circle cx="36.55" cy="24.77" r="1.47" opacity="0.27"/>

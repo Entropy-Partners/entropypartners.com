@@ -5,7 +5,7 @@ Draws the site's raster images so they match index.html (the lattice sphere):
   apple-touch-icon.png  180x180   solid #0a0b0f, sphere ~70% of the width
   icon-512.png          512x512   same design, for manifests
   og.png                1200x630  sphere with faint neighbour edges, wordmark + formula lower left
-  favicon.ico           32x32 + 16x16 on #0a0b0f (ICO alpha is unreliable)
+  favicon.ico           32x32 + 16x16, transparent, accent-coloured points
 
 The look (not the code) of the page is reproduced: a Fibonacci sphere of warm-white points, orthographic
 projection, points nearer the viewer brighter and slightly larger, a soft additive glow around each point,
@@ -253,10 +253,20 @@ def make_icon(px):
 
 
 def make_favicon_frame(px):
-    """ICO frame: fewer, larger points so it still reads as a speckled globe at 16-32 px."""
+    """ICO frame: fewer, larger points so it still reads as a speckled globe at 16-32 px.
+
+    Transparent ground, every point in the accent colour: a tab strip may be light or dark, and amber
+    reads on both where warm white would vanish on a light one. The sphere is rendered on black and its
+    brightness becomes the alpha channel."""
     n = 120 if px >= 32 else 90
-    return render_sphere((px, px), (px / 2, px / 2), 0.47 * px, n=n, dot_d=max(1.0, px * 0.055),
-                         ss=8, halo=0.0, glow=0.2)
+    lit = render_sphere((px, px), (px / 2, px / 2), 0.47 * px, n=n, dot_d=max(1.0, px * 0.055),
+                        ss=8, halo=0.0, glow=0.2)
+    lum = np.asarray(lit, dtype=np.float32).max(axis=2) / 255.0
+    alpha = np.clip(lum * 1.25, 0.0, 1.0)
+    rgba = np.zeros(lum.shape + (4,), dtype=np.uint8)
+    rgba[..., 0], rgba[..., 1], rgba[..., 2] = ACCENT
+    rgba[..., 3] = (alpha * 255 + 0.5).astype(np.uint8)
+    return Image.fromarray(rgba, "RGBA")
 
 
 def make_og():

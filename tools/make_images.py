@@ -264,6 +264,7 @@ def make_favicon_frame(px):
     lum = np.asarray(lit, dtype=np.float32).max(axis=2) / 255.0
     floor = max(BG) / 255.0                       # the ground itself is not light: fully transparent
     alpha = np.clip((lum - floor) / (1.0 - floor) * 1.25, 0.0, 1.0)
+    alpha[alpha < 0.06] = 0.0                     # the faint haze of the glow: not worth a semi-transparent square
     rgba = np.zeros(lum.shape + (4,), dtype=np.uint8)
     rgba[..., 0], rgba[..., 1], rgba[..., 2] = ACCENT
     rgba[..., 3] = (alpha * 255 + 0.5).astype(np.uint8)

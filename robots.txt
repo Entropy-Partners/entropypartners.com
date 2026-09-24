@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://entropypartners.com/sitemap.xml

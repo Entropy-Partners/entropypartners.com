@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<!--
+  entropypartners.com
+  One static page. This file is the whole site.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0b0f">
+<title>Entropy Partners</title>
+<meta name="description" content="Entropy Partners. S = k log W">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://entropypartners.com/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Entropy Partners">
+<meta property="og:title" content="Entropy Partners">
+<meta property="og:description" content="S = k log W">
+<meta property="og:url" content="https://entropypartners.com/">
+<meta property="og:image" content="https://entropypartners.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A sphere of points forming a lattice">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Entropy Partners">
+<meta name="twitter:description" content="S = k log W">
+<meta name="twitter:image" content="https://entropypartners.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0b0f;
+    --fg: #d9d6cf;
+    --fg-mid: #b3b0a9;
+    --fg-dim: #8f8c86;
+    --accent: #eba25a;
+    --rule: rgba(217, 214, 207, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme=light]) {
+      --bg: #0a0b0f;
+      --fg: #d9d6cf;
+      --fg-mid: #b3b0a9;
+      --fg-dim: #8f8c86;
+      --accent: #eba25a;
+      --rule: rgba(217, 214, 207, 0.16);
+    }
+  }
+  :root[data-theme=dark] {
+    --bg: #0a0b0f;
+    --fg: #d9d6cf;
+    --fg-mid: #b3b0a9;
+    --fg-dim: #8f8c86;
+    --accent: #eba25a;
+    --rule: rgba(217, 214, 207, 0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+  body {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  #stage {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none;
+  }
+
+  #fallback {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: min(60vmin, 520px);
+    height: min(60vmin, 520px);
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+  #fallback svg { width: 100%; height: 100%; display: block; }
+  .no-webgl #stage { display: none; }
+  .no-webgl #fallback { display: block; }
+
+  .bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    padding: 0 32px 30px;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+    padding-left: calc(32px + env(safe-area-inset-left, 0px));
+    padding-right: calc(32px + env(safe-area-inset-right, 0px));
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    color: var(--accent);
+  }
+  .lede {
+    margin: 0;
+    font-size: 15px;
+    color: var(--fg);
+  }
+  /* Boltzmann's formula as it is set in print: variables in a light calligraphic italic, the operator and "log" upright */
+  .formula {
+    font-family: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    color: var(--fg);
+    margin-top: 2px;
+  }
+  .formula i { font-style: italic; font-weight: 300; }
+  .formula .op { font-style: normal; padding: 0 0.22em; color: var(--fg-mid); }
+  .formula .fn { font-style: normal; font-size: 0.82em; letter-spacing: 0.02em; color: var(--fg-mid); margin-right: 0.12em; }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    text-align: right;
+    font-family: "Geist Mono", "Geist", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 300;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+    color: var(--fg-dim);
+    white-space: nowrap;
+  }
+  .meta a {
+    color: var(--fg-mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  .meta a:hover { color: var(--accent); border-color: currentColor; }
+  a:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 640px) {
+    .bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+      padding: 0 16px 22px;
+      padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+      padding-left: calc(16px + env(safe-area-inset-left, 0px));
+      padding-right: calc(16px + env(safe-area-inset-right, 0px));
+    }
+    .meta { align-items: flex-start; text-align: left; }
+    #fallback { top: 44%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .meta a { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div id="fallback" aria-hidden="true"></div>
+
+  <div class="bottom">
+    <main>
+      <h1>Entropy Partners</h1>
+      <p class="lede formula" role="math" aria-label="S equals k log W"><i>S</i><span class="op">=</span><i>k</i> <span class="fn">log</span><i>W</i></p>
+    </main>
+    <footer class="meta">
+      <a href="mailto:hello@entropypartners.com">hello@entropypartners.com</a>
+      <span>&copy; <span id="year">2026</span> Entropy Partners</span>
+    </footer>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var CDN = 'https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js'; /* the last classic build that loads silently */
+  var CDN_SRI = 'sha384-RRHfJ6w1mTlKUBMYT/hvnRiOzEB/vyRV3DrQOseb6oYfvaZSfdd0byS4bHps0k2R';
+  var BG = 0x0a0b0f;
+  var WHITE = [1.0, 0.94, 0.86];   /* warm white (as rendered, additive) */
+  var ACCENT = [0.92, 0.62, 0.32]; /* ember, matches --accent #eba25a */
+  var PERIOD = 22;                 /* seconds per order -> disorder -> order cycle */
+
+  var canvas = document.getElementById('stage');
+  var fallbackEl = document.getElementById('fallback');
+  var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var coarse = window.matchMedia('(pointer: coarse)').matches;
+  var small = window.innerWidth < 700 || (coarse && window.innerWidth < 1024);
+  var N = small ? 1400 : 3200;
+
+  /* ---------- deterministic randomness: every visit sees the same object ---------- */
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  /* ---------- Fibonacci sphere ---------- */
+  function fibonacciSphere(n) {
+    var out = new Float32Array(n * 3);
+    var ga = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < n; i++) {
+      var y = 1 - (2 * (i + 0.5)) / n;
+      var r = Math.sqrt(Math.max(0, 1 - y * y));
+      var th = ga * i;
+      out[i * 3] = Math.cos(th) * r;
+      out[i * 3 + 1] = y;
+      out[i * 3 + 2] = Math.sin(th) * r;
+    }
+    return out;
+  }
+
+  /* Nearest neighbours on a Fibonacci lattice sit at Fibonacci index offsets,
+     so we only test those candidates: k closest per point, deduplicated, long edges dropped. */
+  var OFFS = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377];
+  function buildEdges(pos, n, k) {
+    var edges = [];
+    var seen = {};
+    var maxD2 = 2.6 * 14.51 / n; /* ~ (1.6 x hex spacing)^2 on the unit sphere */
+    var cand = [];
+    for (var i = 0; i < n; i++) {
+      var x = pos[i * 3], y = pos[i * 3 + 1], z = pos[i * 3 + 2];
+      cand.length = 0;
+      for (var o = 0; o < OFFS.length; o++) {
+        var f = OFFS[o];
+        if (f >= n) break;
+        var j = i + f;
+        if (j < n) cand.push(j, d2(j));
+        j = i - f;
+        if (j >= 0) cand.push(j, d2(j));
+      }
+      /* selection of the k smallest (cand holds [index, dist2] pairs) */
+      var picks = 0;
+      while (picks < k) {
+        var best = -1, bd = Infinity;
+        for (var c = 0; c < cand.length; c += 2) {
+          if (cand[c + 1] < bd) { bd = cand[c + 1]; best = c; }
+        }
+        if (best < 0 || bd > maxD2) break;
+        var jj = cand[best];
+        cand[best + 1] = Infinity;
+        var a = i < jj ? i : jj, b = i < jj ? jj : i;
+        var key = a * n + b;
+        if (!seen[key]) { seen[key] = 1; edges.push(a, b); }
+        picks++;
+      }
+    }
+    function d2(j) {
+      var dx = pos[j * 3] - x, dy = pos[j * 3 + 1] - y, dz = pos[j * 3 + 2] - z;
+      return dx * dx + dy * dy + dz * dz;
+    }
+    return edges;
+  }
+
+  /* ---------- temperature cycle: heats over 38% of the cycle, cools over 62% ---------- */
+  function temperature(t) {
+    var ph = (t / PERIOD) % 1;
+    var u = ph < 0.38 ? (ph / 0.38) * 0.5 : 0.5 + ((ph - 0.38) / 0.62) * 0.5;
+    var raw = 0.5 - 0.5 * Math.cos(2 * Math.PI * u);
+    return Math.pow(raw, 1.8);
+  }
+
+  /* ---------- WebGL availability ---------- */
+  function hasWebGL() {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+    } catch (e) { return false; }
+  }
+
+  function loadThree(ok, fail) {
+    if (window.THREE) { ok(); return; }
+    var done = false;
+    var s = document.createElement('script');
+    s.src = CDN;
+    s.async = true;
+    s.crossOrigin = 'anonymous';
+    s.integrity = CDN_SRI; /* a tampered or changed file simply falls back to the still lattice */
+    s.onload = function () { if (done) return; done = true; if (window.THREE) ok(); else fail(); };
+    s.onerror = function () { if (done) return; done = true; fail(); };
+    document.head.appendChild(s);
+    setTimeout(function () { if (!done) { done = true; fail(); } }, 12000);
+  }
+
+  /* ---------- shaders ---------- */
+  var POINT_VS = [
+    'attribute float aSize;',
+    'attribute float aHot;',
+    'attribute float aPhase;',
+    'uniform float uPixelRatio;',
+    'uniform float uSize;',
+    'uniform float uFocal;',
+    'uniform float uRadius;',
+    'uniform float uTime;',
+    'uniform float uT;',
+    'uniform vec3 uWhite;',
+    'uniform vec3 uAccent;',
+    'varying vec3 vColor;',
+    'varying float vAlpha;',
+    'void main() {',
+    '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+    '  float nz = (mv.z + uFocal) / uRadius;',
+    '  float fade = 0.22 + 0.78 * smoothstep(-1.3, 1.3, nz);',
+    '  float tw = 0.86 + 0.14 * sin(uTime * 1.7 + aPhase);',
+    '  vColor = mix(uWhite, uAccent, aHot);',
+    '  vAlpha = fade * tw * mix(1.0, 0.7 + 0.8 * uT, aHot);',
+    '  float px = uSize * aSize * uPixelRatio * (uFocal / max(0.001, -mv.z)) * (1.0 + 0.6 * aHot);',
+    '  gl_PointSize = min(px, 60.0);',
+    '  gl_Position = projectionMatrix * mv;',
+    '}'
+  ].join('\n');
+
+  var POINT_FS = [
+    'uniform float uOpacity;',
+    'uniform float uSoft;',
+    'varying vec3 vColor;',
+    'varying float vAlpha;',
+    'void main() {',
+    '  vec2 c = gl_PointCoord - 0.5;',
+    '  float r = length(c) * 2.0;',
+    '  if (r > 1.0) discard;',
+    '  float a = mix(smoothstep(1.0, 0.45, r), pow(1.0 - r, 2.2), uSoft);',
+    '  gl_FragColor = vec4(vColor, a * vAlpha * uOpacity);',
+    '}'
+  ].join('\n');
+
+  var LINE_VS = [
+    'uniform float uFocal;',
+    'uniform float uRadius;',
+    'varying float vFade;',
+    'void main() {',
+    '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+    '  float nz = (mv.z + uFocal) / uRadius;',
+    '  vFade = 0.15 + 0.85 * smoothstep(-1.3, 1.3, nz);',
+    '  gl_Position = projectionMatrix * mv;',
+    '}'
+  ].join('\n');
+
+  var LINE_FS = [
+    'uniform vec3 uColor;',
+    'uniform float uOpacity;',
+    'varying float vFade;',
+    'void main() {',
+    '  gl_FragColor = vec4(uColor, uOpacity * vFade);',
+    '}'
+  ].join('\n');
+
+  var HALO_VS = [
+    'varying vec2 vUv;',
+    'void main() {',
+    '  vUv = uv - 0.5;',
+    '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+    '}'
+  ].join('\n');
+
+  var HALO_FS = [
+    'uniform vec3 uColor;',
+    'uniform float uStrength;',
+    'varying vec2 vUv;',
+    'void main() {',
+    '  float r = length(vUv) * 2.0;',
+    '  float a = pow(max(0.0, 1.0 - r), 2.6) * uStrength;',
+    '  gl_FragColor = vec4(uColor, a);',
+    '}'
+  ].join('\n');
+
+  /* ---------- the WebGL object ---------- */
+  function initGL() {
+    var THREE = window.THREE;
+    var renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas, antialias: !small, alpha: false, powerPreference: 'high-performance'
+      });
+    } catch (e) { return false; }
+    renderer.setClearColor(BG, 1);
+
+    var R = 1;
+    var base = fibonacciSphere(N);
+    var edges = buildEdges(base, N, 3);
+    var E = edges.length / 2;
+
+    var pos = new Float32Array(N * 3);
+    pos.set(base);
+    var lpos = new Float32Array(E * 6);
+
+    var rnd = mulberry32(20260922);
+    var dir = new Float32Array(N * 3);
+    var spread = new Float32Array(N);
+    var freq = new Float32Array(N * 3);
+    var phase = new Float32Array(N * 3);
+    var size = new Float32Array(N);
+    var hot = new Float32Array(N);
+    var twinkle = new Float32Array(N);
+    for (var i = 0; i < N; i++) {
+      var i3 = i * 3;
+      var dx = base[i3] + 0.9 * (rnd() * 2 - 1);
+      var dy = base[i3 + 1] + 0.9 * (rnd() * 2 - 1);
+      var dz = base[i3 + 2] + 0.9 * (rnd() * 2 - 1);
+      var len = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
+      dir[i3] = dx / len; dir[i3 + 1] = dy / len; dir[i3 + 2] = dz / len;
+      spread[i] = rnd() < 0.3 ? -(0.15 + 0.5 * rnd()) : 0.15 + 0.8 * rnd();
+      for (var a = 0; a < 3; a++) {
+        freq[i3 + a] = 0.5 + 1.2 * rnd();
+        phase[i3 + a] = rnd() * Math.PI * 2;
+      }
+      size[i] = 0.7 + 0.6 * rnd();
+      hot[i] = rnd() < 0.04 ? 1 : 0;
+      twinkle[i] = rnd() * Math.PI * 2;
+    }
+
+    var geo = new THREE.BufferGeometry();
+    var posAttr = new THREE.BufferAttribute(pos, 3);
+    posAttr.setUsage(THREE.DynamicDrawUsage);
+    geo.setAttribute('position', posAttr);
+    geo.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
+    geo.setAttribute('aHot', new THREE.BufferAttribute(hot, 1));
+    geo.setAttribute('aPhase', new THREE.BufferAttribute(twinkle, 1));
+
+    var lgeo = new THREE.BufferGeometry();
+    var lAttr = new THREE.BufferAttribute(lpos, 3);
+    lAttr.setUsage(THREE.DynamicDrawUsage);
+    lgeo.setAttribute('position', lAttr);
+
+    /* shared uniforms */
+    var uTime = { value: 0 }, uT = { value: 0 }, uFocal = { value: 6 }, uPR = { value: 1 }, uRadius = { value: R };
+    var uCore = { value: 2.4 }, uGlow = { value: 16 };
+    var white = new THREE.Vector3(WHITE[0], WHITE[1], WHITE[2]);
+    var accent = new THREE.Vector3(ACCENT[0], ACCENT[1], ACCENT[2]);
+
+    function pointsMat(sizeU, opacity, soft) {
+      return new THREE.ShaderMaterial({
+        uniforms: {
+          uPixelRatio: uPR, uSize: sizeU, uFocal: uFocal, uRadius: uRadius, uTime: uTime, uT: uT,
+          uWhite: { value: white }, uAccent: { value: accent },
+          uOpacity: { value: opacity }, uSoft: { value: soft }
+        },
+        vertexShader: POINT_VS, fragmentShader: POINT_FS,
+        transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending
+      });
+    }
+    var coreMat = pointsMat(uCore, 0.9, 0);
+    var glowMat = pointsMat(uGlow, 0.07, 1);
+    var lineMat = new THREE.ShaderMaterial({
+      uniforms: { uFocal: uFocal, uRadius: uRadius, uColor: { value: white }, uOpacity: { value: 0.24 } },
+      vertexShader: LINE_VS, fragmentShader: LINE_FS,
+      transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending
+    });
+    var haloMat = new THREE.ShaderMaterial({
+      uniforms: { uColor: { value: white.clone() }, uStrength: { value: 0.06 } },
+      vertexShader: HALO_VS, fragmentShader: HALO_FS,
+      transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending
+    });
+
+    var core = new THREE.Points(geo, coreMat);
+    var glow = new THREE.Points(geo, glowMat);
+    var lines = new THREE.LineSegments(lgeo, lineMat);
+    var halo = new THREE.Mesh(new THREE.PlaneGeometry(R * 5.2, R * 5.2), haloMat);
+    core.frustumCulled = glow.frustumCulled = lines.frustumCulled = halo.frustumCulled = false;
+    halo.renderOrder = 0; lines.renderOrder = 1; glow.renderOrder = 2; core.renderOrder = 3;
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 60);
+    var pivot = new THREE.Group();   /* position only (lifted on portrait screens) */
+    var tilt = new THREE.Group();    /* follows the pointer with a lag */
+    var spin = new THREE.Group();    /* slow constant rotation */
+    scene.add(pivot);
+    pivot.add(halo);
+    pivot.add(tilt);
+    tilt.add(spin);
+    spin.add(lines);
+    spin.add(glow);
+    spin.add(core);
+
+    /* ---------- fit to viewport (DPR aware) ---------- */
+    function fit() {
+      var w = Math.max(1, window.innerWidth), h = Math.max(1, window.innerHeight);
+      var pr = Math.min(window.devicePixelRatio || 1, 2);
+      renderer.setPixelRatio(pr);
+      renderer.setSize(w, h, false);
+      uPR.value = pr;
+      camera.aspect = w / h;
+      var ratio = h / w;
+      var k = ratio > 1 ? 0.52 : 0.40;        /* sphere radius as a share of the shorter half-side */
+      var Rpx = k * Math.min(w, h) / 2;
+      var tanH = Math.tan(camera.fov * Math.PI / 360);
+      var d = R / (k * tanH * Math.min(1, w / h));
+      camera.position.set(0, 0, d);
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+      uFocal.value = d;
+      pivot.position.y = ratio > 1 ? R * 0.6 * Math.min(1, (ratio - 1) / 0.6) : 0;
+      uCore.value = Math.max(1.5, Math.min(2.8, Rpx * 0.014));
+      uGlow.value = uCore.value * 7;
+    }
+
+    /* ---------- per-frame state ---------- */
+    function updatePositions(T, time) {
+      var e = Math.pow(T, 1.2), J = 0.09 * T;
+      for (var i = 0; i < N; i++) {
+        var i3 = i * 3;
+        var s = e * spread[i];
+        pos[i3] = base[i3] + s * dir[i3] + J * Math.sin(freq[i3] * time + phase[i3]);
+        pos[i3 + 1] = base[i3 + 1] + s * dir[i3 + 1] + J * Math.sin(freq[i3 + 1] * time + phase[i3 + 1]);
+        pos[i3 + 2] = base[i3 + 2] + s * dir[i3 + 2] + J * Math.sin(freq[i3 + 2] * time + phase[i3 + 2]);
+      }
+      posAttr.needsUpdate = true;
+      for (var k = 0; k < E; k++) {
+        var a = edges[k * 2] * 3, b = edges[k * 2 + 1] * 3, o = k * 6;
+        lpos[o] = pos[a]; lpos[o + 1] = pos[a + 1]; lpos[o + 2] = pos[a + 2];
+        lpos[o + 3] = pos[b]; lpos[o + 4] = pos[b + 1]; lpos[o + 5] = pos[b + 2];
+      }
+      lAttr.needsUpdate = true;
+    }
+
+    function setState(T, time) {
+      uT.value = T;
+      uTime.value = time;
+      lineMat.uniforms.uOpacity.value = 0.24 * Math.pow(1 - T, 2.5);
+      glowMat.uniforms.uOpacity.value = 0.06 + 0.05 * T;
+      haloMat.uniforms.uStrength.value = 0.05 + 0.09 * T;
+      var m = 0.4 * T;
+      haloMat.uniforms.uColor.value.set(
+        WHITE[0] + (ACCENT[0] - WHITE[0]) * m,
+        WHITE[1] + (ACCENT[1] - WHITE[1]) * m,
+        WHITE[2] + (ACCENT[2] - WHITE[2]) * m
+      );
+      updatePositions(T, time);
+    }
+
+    /* ---------- pointer: lagging tilt, and quick movement adds a little heat ---------- */
+    var ptr = { x: 0, y: 0, has: false, lastT: 0 };
+    var heat = 0;
+    function onMove(e) {
+      var w = Math.max(1, window.innerWidth), h = Math.max(1, window.innerHeight);
+      var nx = e.clientX / w - 0.5, ny = e.clientY / h - 0.5;
+      var now = performance.now();
+      if (ptr.has) {
+        var dt = (now - ptr.lastT) / 1000;
+        if (dt > 0.001) {
+          var sp = Math.sqrt((nx - ptr.x) * (nx - ptr.x) + (ny - ptr.y) * (ny - ptr.y)) / dt;
+          heat = Math.min(0.28, heat + Math.min(0.02, sp * 0.003));
+        }
+      }
+      ptr.x = nx; ptr.y = ny; ptr.has = true; ptr.lastT = now;
+    }
+    function onLeave() { ptr.has = false; }
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', onMove, { passive: true });
+    window.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse') onLeave(); }, { passive: true });
+    window.addEventListener('pointercancel', onLeave, { passive: true });
+    document.documentElement.addEventListener('mouseleave', onLeave);
+
+    /* ---------- loop ---------- */
+    var t = 0, last = 0, raf = 0, running = false;
+    var cur = { x: 0, y: 0 };
+
+    function step(now) {
+      raf = requestAnimationFrame(step);
+      var dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+      last = now;
+      t += dt;
+      heat *= Math.exp(-dt * 1.1);
+      var T = Math.min(1, temperature(t) + heat);
+      var a = 1 - Math.exp(-dt * 2.6);
+      var tx = ptr.has ? ptr.y * 0.45 : 0;
+      var ty = ptr.has ? ptr.x * 0.6 : 0;
+      cur.x += (tx - cur.x) * a;
+      cur.y += (ty - cur.y) * a;
+      tilt.rotation.x = cur.x;
+      tilt.rotation.y = cur.y;
+      spin.rotation.y = t * 0.07;
+      spin.rotation.x = 0.26 + 0.06 * Math.sin(t * 0.13);
+      spin.rotation.z = 0.05 * Math.sin(t * 0.09);
+      setState(T, t);
+      renderer.render(scene, camera);
+    }
+    function renderStill() {
+      tilt.rotation.set(0, 0, 0);
+      spin.rotation.set(0.26, 0.9, 0);
+      setState(0.1, 3.0);
+      renderer.render(scene, camera);
+    }
+    function start() {
+      if (running) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(step);
+    }
+    function stop() {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(raf);
+    }
+    function apply() {
+      fit();
+      if (reduceMQ.matches) { stop(); renderStill(); }
+      else if (!document.hidden) start();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop();
+      else if (!reduceMQ.matches) start();
+    });
+    window.addEventListener('resize', function () {
+      fit();
+      if (reduceMQ.matches) renderStill();
+    });
+    if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', apply);
+    else if (reduceMQ.addListener) reduceMQ.addListener(apply);
+
+    apply();
+    if (reduceMQ.matches || document.hidden) renderStill();
+    return true;
+  }
+
+  /* ---------- static SVG lattice for browsers without WebGL ---------- */
+  function showFallback() {
+    document.documentElement.classList.add('no-webgl');
+    if (fallbackEl.firstChild) return;
+    var n = 1100, base = fibonacciSphere(n), edges = buildEdges(base, n, 3);
+    var rnd = mulberry32(7);
+    var cx = Math.cos(0.3), sx = Math.sin(0.3), cy = Math.cos(0.7), sy = Math.sin(0.7);
+    var P = new Float32Array(n * 3);
+    for (var i = 0; i < n; i++) {
+      var i3 = i * 3, x = base[i3], y = base[i3 + 1], z = base[i3 + 2];
+      var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+      var y2 = y * cx - z1 * sx, z2 = y * sx + z1 * cx;
+      P[i3] = x1; P[i3 + 1] = -y2; P[i3 + 2] = z2;
+    }
+    var out = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.2 -1.2 2.4 2.4" focusable="false">'];
+    out.push('<defs><radialGradient id="h"><stop offset="0" stop-color="#eba25a" stop-opacity="0.14"/>' +
+      '<stop offset="0.55" stop-color="#eba25a" stop-opacity="0.03"/><stop offset="1" stop-color="#eba25a" stop-opacity="0"/></radialGradient></defs>');
+    out.push('<circle r="1.2" fill="url(#h)"/>');
+    out.push('<g stroke="#f5efe3" stroke-width="0.004" stroke-linecap="round">');
+    for (var k = 0; k < edges.length; k += 2) {
+      var a = edges[k] * 3, b = edges[k + 1] * 3;
+      var zz = (P[a + 2] + P[b + 2]) * 0.5;
+      out.push('<line x1="' + P[a].toFixed(3) + '" y1="' + P[a + 1].toFixed(3) + '" x2="' + P[b].toFixed(3) +
+        '" y2="' + P[b + 1].toFixed(3) + '" stroke-opacity="' + (0.05 + 0.22 * (zz + 1) * 0.5).toFixed(3) + '"/>');
+    }
+    out.push('</g><g fill="#f5efe3">');
+    for (var j = 0; j < n; j++) {
+      var j3 = j * 3, zp = P[j3 + 2];
+      var isHot = rnd() < 0.04;
+      out.push('<circle cx="' + P[j3].toFixed(3) + '" cy="' + P[j3 + 1].toFixed(3) + '" r="' + (isHot ? '0.014' : '0.009') +
+        '"' + (isHot ? ' fill="#eba25a"' : '') + ' fill-opacity="' + (0.3 + 0.7 * (zp + 1) * 0.5).toFixed(3) + '"/>');
+    }
+    out.push('</g></svg>');
+    fallbackEl.innerHTML = out.join('');
+  }
+
+  /* ---------- boot ---------- */
+  if (!hasWebGL()) { showFallback(); return; }
+  loadThree(function () {
+    var ok = false;
+    try { ok = initGL(); } catch (e) { ok = false; }
+    if (!ok) showFallback();
+  }, showFallback);
+})();
+</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

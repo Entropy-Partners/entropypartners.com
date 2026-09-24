@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<!-- Entropy Partners: 120 points on a Fibonacci sphere, orthographic, tilted like the page's still frame.
+     Nearer points are larger and brighter; three carry the ember accent. Transparent ground; the points
+     switch to ink when the browser chrome is light so the mark still reads there. -->
+<style>
+.p{fill:#fff0db}
+@media (prefers-color-scheme:light){.p{fill:#1a1b20}}
+</style>
+<g class="p">
+<circle cx="30.25" cy="31.04" r="1.45" opacity="0.26"/>
+<circle cx="39.82" cy="35.42" r="1.47" opacity="0.27"/>
+<circle cx="36.55" cy="24.77" r="1.47" opacity="0.27"/>
+<circle cx="24.77" cy="38.03" r="1.47" opacity="0.27"/>
+<circle cx="33.75" cy="42.17" r="1.48" opacity="0.27"/>
+<circle cx="26.35" cy="21.09" r="1.49" opacity="0.28"/>
+<circle cx="20.30" cy="27.71" r="1.49" opacity="0.28"/>
+<circle cx="46.09" cy="29.48" r="1.50" opacity="0.29"/>
+<circle cx="42.44" cy="19.19" r="1.52" opacity="0.30"/>
+<circle cx="15.58" cy="34.94" r="1.53" opacity="0.30"/>
+<circle cx="32.60" cy="15.19" r="1.53" opacity="0.30"/>
+<circle cx="21.51" cy="45.70" r="1.53" opacity="0.31"/>
+<circle cx="40.52" cy="47.26" r="1.53" opacity="0.31"/>
+<circle cx="47.27" cy="40.69" r="1.53" opacity="0.31"/>
+<circle cx="29.43" cy="49.92" r="1.54" opacity="0.31"/>
+<circle cx="17.28" cy="18.42" r="1.56" opacity="0.33"/>
+<circle cx="51.37" cy="24.21" r="1.58" opacity="0.34"/>
+<circle cx="11.73" cy="25.35" r="1.58" opacity="0.35"/>
+<circle cx="23.65" cy="12.21" r="1.58" opacity="0.35"/>
+<circle cx="13.30" cy="42.64" r="1.59" opacity="0.35"/>
+<circle cx="53.34" cy="35.05" r="1.59" opacity="0.35"/>
+<circle cx="37.75" cy="10.04" r="1.60" opacity="0.36"/>
+<circle cx="46.77" cy="14.23" r="1.61" opacity="0.37"/>
+<circle cx="34.29" cy="55.47" r="1.62" opacity="0.38"/>
+<circle cx="43.09" cy="52.99" r="1.62" opacity="0.38"/>
+<circle cx="22.72" cy="54.09" r="1.63" opacity="0.38"/>
+<circle cx="8.00" cy="32.81" r="1.63" opacity="0.39"/>
+<circle cx="51.18" cy="46.52" r="1.63" opacity="0.39"/>
+<circle cx="29.62" cy="6.92" r="1.66" opacity="0.41"/>
+<circle cx="14.79" cy="50.60" r="1.66" opacity="0.41"/>
+<circle cx="57.77" cy="30.05" r="1.67" opacity="0.43"/>
+<circle cx="54.68" cy="19.44" r="1.67" opacity="0.43"/>
+<circle cx="10.89" cy="16.52" r="1.68" opacity="0.43"/>
+<circle cx="17.35" cy="10.05" r="1.69" opacity="0.44"/>
+<circle cx="6.84" cy="40.57" r="1.69" opacity="0.45"/>
+<circle cx="57.07" cy="41.14" r="1.70" opacity="0.45"/>
+<circle cx="6.05" cy="23.73" r="1.71" opacity="0.47"/>
+<circle cx="40.15" cy="5.69" r="1.73" opacity="0.48"/>
+<circle cx="48.25" cy="9.75" r="1.73" opacity="0.48"/>
+<circle cx="37.89" cy="58.97" r="1.73" opacity="0.48"/>
+<circle cx="50.65" cy="52.42" r="1.73" opacity="0.48"/>
+<circle cx="23.96" cy="58.60" r="1.74" opacity="0.49"/>
+<circle cx="8.96" cy="48.33" r="1.76" opacity="0.51"/>
+<circle cx="24.59" cy="4.74" r="1.76" opacity="0.51"/>
+<circle cx="3.49" cy="31.37" r="1.77" opacity="0.53"/>
+<circle cx="59.88" cy="25.42" r="1.78" opacity="0.54"/>
+<circle cx="55.16" cy="14.93" r="1.79" opacity="0.54"/>
+<circle cx="60.54" cy="36.35" r="1.79" opacity="0.55"/>
+<circle cx="15.41" cy="55.68" r="1.80" opacity="0.56"/>
+<circle cx="45.22" cy="57.74" r="1.80" opacity="0.56"/>
+<circle cx="33.28" cy="3.05" r="1.80" opacity="0.56"/>
+<circle cx="56.71" cy="47.30" r="1.81" opacity="0.57"/>
+<circle cx="15.11" cy="8.31" r="1.81" opacity="0.57"/>
+<circle cx="30.59" cy="61.08" r="1.82" opacity="0.57"/>
+<circle cx="8.29" cy="15.03" r="1.82" opacity="0.58"/>
+<circle cx="3.61" cy="39.15" r="1.84" opacity="0.60"/>
+<circle cx="44.86" cy="5.59" r="1.86" opacity="0.62"/>
+<circle cx="4.20" cy="22.46" r="1.87" opacity="0.63"/>
+<circle cx="22.01" cy="59.65" r="1.88" opacity="0.64"/>
+<circle cx="59.20" cy="20.88" r="1.89" opacity="0.66"/>
+<circle cx="37.05" cy="60.94" r="1.89" opacity="0.66"/>
+<circle cx="6.59" cy="46.75" r="1.89" opacity="0.66"/>
+<circle cx="51.85" cy="10.37" r="1.90" opacity="0.67"/>
+<circle cx="25.90" cy="3.29" r="1.90" opacity="0.67"/>
+<circle cx="52.48" cy="53.01" r="1.90" opacity="0.67"/>
+<circle cx="61.32" cy="31.80" r="1.91" opacity="0.67"/>
+<circle cx="12.50" cy="53.81" r="1.92" opacity="0.69"/>
+<circle cx="59.24" cy="42.66" r="1.92" opacity="0.69"/>
+<circle cx="2.89" cy="30.20" r="1.93" opacity="0.70"/>
+<circle cx="18.03" cy="6.44" r="1.93" opacity="0.70"/>
+<circle cx="45.40" cy="57.78" r="1.94" opacity="0.71"/>
+<circle cx="34.35" cy="3.06" r="1.94" opacity="0.71"/>
+<circle cx="9.88" cy="13.44" r="1.95" opacity="0.73"/>
+<circle cx="41.89" cy="5.29" r="1.98" opacity="0.76"/>
+<circle cx="55.43" cy="16.10" r="1.99" opacity="0.77"/>
+<circle cx="4.35" cy="37.94" r="1.99" opacity="0.77"/>
+<circle cx="31.53" cy="60.26" r="1.99" opacity="0.77"/>
+<circle cx="21.54" cy="57.97" r="2.00" opacity="0.78"/>
+<circle cx="6.39" cy="21.07" r="2.01" opacity="0.79"/>
+<circle cx="59.38" cy="27.19" r="2.01" opacity="0.79"/>
+<circle cx="54.25" cy="48.54" r="2.02" opacity="0.79"/>
+<circle cx="58.71" cy="38.13" r="2.03" opacity="0.81"/>
+<circle cx="8.30" cy="45.36" r="2.04" opacity="0.81"/>
+<circle cx="14.26" cy="52.17" r="2.05" opacity="0.83"/>
+<circle cx="48.16" cy="10.63" r="2.05" opacity="0.83"/>
+<circle cx="15.28" cy="11.20" r="2.05" opacity="0.83"/>
+<circle cx="38.35" cy="57.54" r="2.06" opacity="0.84"/>
+<circle cx="46.70" cy="53.59" r="2.07" opacity="0.85"/>
+<circle cx="32.46" cy="5.97" r="2.07" opacity="0.85"/>
+<circle cx="6.30" cy="28.86" r="2.08" opacity="0.85"/>
+<circle cx="23.64" cy="7.62" r="2.08" opacity="0.86"/>
+<circle cx="54.92" cy="22.20" r="2.10" opacity="0.88"/>
+<circle cx="26.47" cy="55.85" r="2.11" opacity="0.89"/>
+<circle cx="39.92" cy="9.42" r="2.12" opacity="0.90"/>
+<circle cx="12.03" cy="19.11" r="2.13" opacity="0.90"/>
+<circle cx="52.52" cy="43.96" r="2.13" opacity="0.90"/>
+<circle cx="55.54" cy="33.38" r="2.13" opacity="0.90"/>
+<circle cx="9.03" cy="36.48" r="2.88" fill="#eba25a" opacity="0.91"/>
+<circle cx="48.35" cy="16.49" r="2.15" opacity="0.92"/>
+<circle cx="20.09" cy="50.19" r="2.16" opacity="0.93"/>
+<circle cx="13.91" cy="43.66" r="2.16" opacity="0.93"/>
+<circle cx="34.59" cy="52.92" r="2.17" opacity="0.94"/>
+<circle cx="43.92" cy="48.96" r="2.94" fill="#eba25a" opacity="0.94"/>
+<circle cx="27.62" cy="12.01" r="2.18" opacity="0.95"/>
+<circle cx="19.78" cy="16.19" r="2.19" opacity="0.95"/>
+<circle cx="13.03" cy="26.92" r="2.19" opacity="0.95"/>
+<circle cx="50.33" cy="28.14" r="2.20" opacity="0.96"/>
+<circle cx="48.26" cy="39.00" r="2.21" opacity="0.97"/>
+<circle cx="37.43" cy="15.18" r="2.99" fill="#eba25a" opacity="0.97"/>
+<circle cx="28.80" cy="47.47" r="2.23" opacity="0.98"/>
+<circle cx="43.93" cy="22.17" r="2.24" opacity="0.99"/>
+<circle cx="16.87" cy="34.37" r="2.24" opacity="0.99"/>
+<circle cx="38.79" cy="43.75" r="2.25" opacity="0.99"/>
+<circle cx="22.49" cy="41.26" r="2.25"/>
+<circle cx="21.72" cy="24.06" r="2.26"/>
+<circle cx="30.56" cy="20.13" r="2.26"/>
+<circle cx="42.43" cy="33.47" r="2.27"/>
+<circle cx="36.10" cy="27.22" r="2.29"/>
+<circle cx="32.58" cy="37.89" r="2.29"/>
+<circle cx="26.48" cy="31.31" r="2.29"/>
+</g>
+</svg>
